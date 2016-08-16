@@ -30,6 +30,17 @@ body {
 	/*to center*/
 	background-position: 50% 50%;
 	background-size: cover;
+	/*transition left property. Starts immediatly (duration is 0) but the delay is .75s*/
+	/*New slide comes in, and afterwards the old slide slides out.*/
+	transition: left 0s .75s;
+}
+
+.slide h1 {
+	opacity: 0;
+	transform: translateY(100%);
+	/*.5s duration and .5s delay*/
+	/*transition the opacity over .5s*/
+	transition: transform .5s .5s, opacity .5s;
 }
 
 /*Select any input that has an id that starts with slide*/
@@ -37,6 +48,14 @@ body {
 	left: 0;
 	/*make sure this slide is on top of the previous one*/
 	z-index: 100;
+	/*add transition to the left property of the slide coming up*/
+	transition: left 0.6s ease-out;
+}
+
+[id^="slide"]:checked + .slide h1 {
+	opacity: 1;
+	transform: translateY(0);
+	transition: all .5s .5s;
 }
 
 .slide-1 { background-image: url('../images/slide1.jpg'); }
